@@ -53,7 +53,8 @@ function efs_get_slider(){
 	endif;
 	wp_reset_query();
 
-	if($count > 1) {
+	$slider = '';
+	if(isset($count) && $count > 1) {
 		$slider .= '</ul>
 		<nav class="orbit-bullets">';
 

@@ -882,13 +882,13 @@ function govph_displayoptions( $options ){
       break;
     case 'govph_logo':
       $logo_image = (!empty($option['govph_logo']) ? $option['govph_logo'] : get_template_directory_uri().'/images/logo-masthead-large.png');
-      $addLogo = ($option['govph_logo_enable'] == 1) ? '<img src="'.$logo_image.'" />' : 
+      $addLogo = (isset($option['govph_logo_enable']) && $option['govph_logo_enable'] == 1) ? '<img src="'.$logo_image.'" />' : 
       '<div id="textlogo-wrapper">
-        <div id="textlogo-image"><img alt="'.$option['govph_agency_name'].' Official Logo" src="'.$logo_image.'" height="100px" width="100px"/></div>
+        <div id="textlogo-image"><img alt="'.(isset($option['govph_agency_name']) && $option['govph_agency_name']).' Official Logo" src="'.$logo_image.'" height="100px" width="100px"/></div>
         <div id="textlogo-inner-wrapper">
           <div id="agency-heading">Republic of the Philippines</div>
-          <div id="agency-name">'.$option['govph_agency_name'].'</div>
-          <div id="agency-tagline">'.$option['govph_agency_tagline'].'</div>
+          <div id="agency-name">'.(isset($option['govph_agency_name']) && $option['govph_agency_name']).'</div>
+          <div id="agency-tagline">'.(isset($option['govph_agency_tagline']) && $option['govph_agency_tagline']).'</div>
         </div>
        </div>' ;
       echo $addLogo;
@@ -923,17 +923,17 @@ function govph_displayoptions( $options ){
       echo $anchorColor;
       break;
     case 'govph_disable_search':
-      return ($option['govph_disable_search'] ? false  : true);
+      return ((isset($option['govph_disable_search']) && $option['govph_disable_search']) ? false  : true);
       break;
     // TODO: disable option for widget position, make it dynamic, displays sidebars when atleast one widget is active
     // Start of case for disable gutenberg on widgets
     case 'govph_enable_widget_classic_editor':
-      return ($option['govph_enable_widget_classic_editor'] ? false  : true);
+      return ((isset($option['govph_enable_widget_classic_editor']) && $option['govph_enable_widget_classic_editor']) ? false  : true);
       break;
     // End of case for disable gutenberg on widgets
     // Start of case for disable gutenberg on posts
     case 'govph_enable_post_classic_editor':
-      return ($option['govph_enable_post_classic_editor'] ? false  : true);
+      return ((isset($option['govph_enable_widget_classic_editor']) && $option['govph_enable_widget_classic_editor']) ? false  : true);
       break;
     // End of case for disable gutenberg on posts
     case 'govph_content_position':
@@ -1024,24 +1024,24 @@ function govph_displayoptions( $options ){
       echo $val;
       break;
     case 'govph_slider_full':
-      if ($option['govph_slider_fullwidth'] == 'true') {
+      if (isset($option['govph_slider_fullwidth']) && $option['govph_slider_fullwidth'] == 'true') {
         $val = 'active';
         return $val;
       }
       break;
     case 'govph_slider_start':
-      if ($option['govph_slider_fullwidth'] == 'true') {
+      if (isset($option['govph_slider_fullwidth']) && $option['govph_slider_fullwidth'] == 'true') {
         echo '';
       }
-      elseif ($option['govph_slider_fullwidth'] != 'true' || is_active_sidebar('banner-section-1') || is_active_sidebar('banner-section-2')) {
+      elseif ((isset($option['govph_slider_fullwidth']) && $option['govph_slider_fullwidth'] != 'true') || is_active_sidebar('banner-section-1') || is_active_sidebar('banner-section-2')) {
         echo '<div class="row">';
       }
       break;
     case 'govph_slider_end':
-      if ($option['govph_slider_fullwidth'] == 'true') {
+      if (isset($option['govph_slider_fullwidth']) && $option['govph_slider_fullwidth'] == 'true') {
         echo '';
       }
-      elseif ($option['govph_slider_fullwidth'] != 'true' || is_active_sidebar('banner-section-1') || is_active_sidebar('banner-section-2')) {
+      elseif ((isset($option['govph_slider_fullwidth']) && $option['govph_slider_fullwidth'] != 'true') || is_active_sidebar('banner-section-1') || is_active_sidebar('banner-section-2')) {
         echo '</div>';
       }
       break;
